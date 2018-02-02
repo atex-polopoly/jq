@@ -4,6 +4,7 @@
 #
 # Copyright:: 2018, The Authors, All Rights Reserved.
 install_dir = node["jq"]['install_dir']
+version =  node["jq"]['version']
 
 directory install_dir do
   owner 'root'
@@ -12,11 +13,6 @@ directory install_dir do
 end
 
 remote_file "#{node["jq"]['install_dir']}/#{node["jq"]['name']}" do
-  source 'https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64'
+  source "https://github.com/stedolan/jq/releases/download/jq-#{version}/jq-linux64"
   mode '0775'
-end
-
-execute 'make jq executable' do
-  command "chmod +x #{node["jq"]['install_dir']}/#{node["jq"]['name']}"
-  not_if { File.file?("#{node["jq"]['install_dir']}/#{node["jq"]['name']}") }
 end

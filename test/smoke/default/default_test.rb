@@ -9,7 +9,7 @@ describe directory('/srv') do
   it { should exist }
   it { should be_owned_by 'root' }
   it { should be_grouped_into 'root' }
-  its('mode') { should cmp '0774' }
+  its('mode') { should cmp '0775' }
 end
 
 
