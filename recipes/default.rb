@@ -13,6 +13,6 @@ directory install_dir do
 end
 
 remote_file "#{node["jq"]['install_dir']}/#{node["jq"]['name']}" do
-  source "https://github.com/stedolan/jq/releases/download/jq-#{version}/jq-linux64"
+  source URI.escape("http://#{node[:mirror][:host]}#{node[:mirror][:path]}/jq/jq-1.5/jq-linux64")
   mode '0775'
 end
